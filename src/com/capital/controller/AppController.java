@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AppController {
+	@RequestMapping(path="/home",method = RequestMethod.GET)
+	public String home()  {
+		return "Hii Welcome to the test method";		
+	}
 	
-	@RequestMapping(name="/login",method = RequestMethod.GET)
+	@RequestMapping(path="/login",method = RequestMethod.GET)
 	public boolean loginPage(@RequestParam("userName") String username, @RequestParam("passWord") String password) {
 		return false;		
 	}
