@@ -1,16 +1,26 @@
 package com.capital.beans;
 
 import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Table(name="login_details")
+@Entity(name="login_details")
 public class LoginBean {
 
+	@Id
+	@Column(name="userid")
+	private String userId;
 	@Column(name="emailid")
 	private String emailId;
 	@Column(name="password")
 	private String password;
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getEmailId() {
 		return emailId;
 	}
