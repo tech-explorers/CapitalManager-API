@@ -1,6 +1,6 @@
-package com.capital.beans;
+package com.capital.entities;
 
-public class UserBean {
+public class UserEntity {
 
 	private String firstName;
 	private String lastName;

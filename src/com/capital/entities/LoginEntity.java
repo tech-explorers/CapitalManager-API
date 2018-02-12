@@ -1,11 +1,13 @@
-package com.capital.beans;
+package com.capital.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="login_details")
-public class LoginBean {
+@Entity
+@Table(name="login_details")
+public class LoginEntity {
 
 	@Id
 	@Column(name="userid")
