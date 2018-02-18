@@ -1,27 +1,32 @@
 package com.capital.controller;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capital.config.AppConfig;
+import com.capital.entities.LoginEntity;
+import com.capital.service.LoginService;
 
 @RestController
 public class AppController {
-	@RequestMapping(path="/home",method = RequestMethod.GET)
-	public String home()  {
-		//return "Hii Welcome to the test method";
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.refresh();
-		DriverManagerDataSource ds = ctx.getBean(DriverManagerDataSource.class);
-		return ds.getUrl();
+
+	@Autowired
+	private LoginService loginService;
+
+	@RequestMapping(path = "/home", method = RequestMethod.GET)
+	public String home() {
+		List<LoginEntity> users = loginService.getAllUsers();
+		System.out.println(users);
+		return "Hii Welcome to the test method";
+
 	}
-	
-	@RequestMapping(path="/login",method = RequestMethod.GET)
+
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public boolean loginPage(@RequestParam("userName") String username, @RequestParam("passWord") String password) {
-		return false;		
+		return false;
 	}
 }

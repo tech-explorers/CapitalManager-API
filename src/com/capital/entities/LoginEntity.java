@@ -36,4 +36,9 @@ public class LoginEntity {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "Ha hA ID : "+userId+"\n Username : "+emailId+"\n Password : "+password;
+	}
 }
