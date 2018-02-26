@@ -6,14 +6,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-/*@Import(RepositoryConfig.class)*/
+/* @Import(RepositoryConfig.class) */
 @ComponentScan(value = "com.capital")
 public class AppConfig {
 
-	/*@Bean
-	public PropertyPlaceholderConfigurer getPropertyPlaceholderConfig() {
-		PropertyPlaceholderConfigurer prop = new PropertyPlaceholderConfigurer();
-		prop.setLocation(new ClassPathResource("/ConfigProperties/app.properties"));
-		return prop;
-	}*/
 }

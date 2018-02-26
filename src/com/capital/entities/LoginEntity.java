@@ -6,39 +6,50 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="login_details")
+@Table(name = "login_details")
 public class LoginEntity {
 
 	@Id
-	@Column(name="userid")
-	private String userId;
-	@Column(name="emailid")
+	@Column(name = "login_id")
+	private String loginid;
+
+	@Column(name = "emailid")
 	private String emailId;
-	@Column(name="password")
+	@Column(name = "password")
 	private String password;
-	
-	public String getUserId() {
-		return userId;
+
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "USERID") private UserEntity userEntity;
+	 */
+
+	public String getLoginid() {
+		return loginid;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+	public void setLoginid(String loginid) {
+		this.loginid = loginid;
 	}
+
 	public String getEmailId() {
 		return emailId;
 	}
+
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
-	public String toString()
-	{
-		return "Ha hA ID : "+userId+"\n Username : "+emailId+"\n Password : "+password;
+	public String toString() {
+		return "Ha hA ID : " + loginid + "\n Username : " + emailId + "\n Password : " + password;
 	}
 }
