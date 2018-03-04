@@ -48,8 +48,8 @@ public class LoginEntity {
 		this.password = password;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "Ha hA ID : " + loginid + "\n Username : " + emailId + "\n Password : " + password;
-	}
+	}*/
 }

@@ -15,13 +15,14 @@ import com.capital.entities.UserEntity;
 import com.capital.model.ResponseModel;
 import com.capital.model.UserResponse;
 import com.capital.service.UserService;
+import com.capital.util.GeneralUtil;
 
 @RestController
 public class AppController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	static Logger logger = Logger.getLogger(AppController.class.getName());
 
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
@@ -33,12 +34,14 @@ public class AppController {
 	}
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public boolean loginPage(@RequestParam("userName") String username, @RequestParam("passWord") String password) {
-		return false;
+	public ResponseModel<UserResponse> loginPage(@RequestBody LoginEntity loginEntity) {
+		return userService.loginUser(loginEntity);
 	}
 
 	@RequestMapping(path = "/register", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseModel<UserResponse> registration(@RequestBody UserEntity userEntity) {
+		//Below hashing is temporary. Hashing will be performed at frontend layer.
+		userEntity.getLoginEntity().setPassword(GeneralUtil.getHashedValue(userEntity.getLoginEntity().getPassword()));
 		return userService.registerUser(userEntity);
 
 	}

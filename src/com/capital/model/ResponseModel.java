@@ -3,20 +3,34 @@ package com.capital.model;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Component
 @Scope(value = "prototype")
-public class ResponseModel<T> {
+@JsonInclude(Include.NON_NULL)
+public class ResponseModel<T>  {
 
-	private T responseObject;
+	private T responseData;
 
 	private String responseMessage;
+	
+	private String responseStatus;
 
-	public T getResponseObject() {
-		return responseObject;
+	public String getResponseStatus() {
+		return responseStatus;
+	}
+
+	public void setResponseStatus(String responseStatus) {
+		this.responseStatus = responseStatus;
+	}
+
+	public T getResponseData() {
+		return responseData;
 	}
 
 	public void setResponseObject(T responseObject) {
-		this.responseObject = responseObject;
+		this.responseData = responseObject;
 	}
 
 	public String getResponseMessage() {
@@ -27,9 +41,9 @@ public class ResponseModel<T> {
 		this.responseMessage = responseMessage;
 	}
 
-	public void clear()
-	{
-		setResponseObject(null);
-		setResponseMessage(null);
+	@Override
+	public String toString() {
+		return "Res Object : " + responseData + " Res Message : " + responseMessage;
 	}
+
 }

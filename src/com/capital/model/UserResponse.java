@@ -2,11 +2,20 @@ package com.capital.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Component
-@Scope(value="prototype")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@JsonInclude(Include.NON_NULL)
+@JsonAutoDetect(fieldVisibility = Visibility.NONE, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE)
 public class UserResponse {
 
 	String firstName;
@@ -15,6 +24,7 @@ public class UserResponse {
 	String emailID;
 	List<String> groupNames;
 
+	@JsonProperty
 	public String getFirstName() {
 		return firstName;
 	}
@@ -23,6 +33,7 @@ public class UserResponse {
 		this.firstName = firstName;
 	}
 
+	@JsonProperty
 	public String getMiddleName() {
 		return middleName;
 	}
@@ -31,6 +42,7 @@ public class UserResponse {
 		this.middleName = middleName;
 	}
 
+	@JsonProperty
 	public String getLastName() {
 		return lastName;
 	}
@@ -39,6 +51,7 @@ public class UserResponse {
 		this.lastName = lastName;
 	}
 
+	@JsonProperty
 	public String getEmailID() {
 		return emailID;
 	}
@@ -47,6 +60,7 @@ public class UserResponse {
 		this.emailID = emailID;
 	}
 
+	@JsonProperty
 	public List<String> getGroupNames() {
 		return groupNames;
 	}
@@ -54,14 +68,10 @@ public class UserResponse {
 	public void setGroupNames(List<String> groupNames) {
 		this.groupNames = groupNames;
 	}
-	
-	public void clear()
-	{
-		setFirstName(null);
-		setLastName(null);
-		setMiddleName(null);
-		setEmailID(null);
-		setGroupNames(null);
+
+	@Override
+	public String toString() {
+		return ("FirstName : " + firstName + " Last Name : " + lastName);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.capital.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -26,7 +27,7 @@ public class UserEntity {
 	@Column(name = "groupid")
 	private String groupId;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "login_id")
 	private LoginEntity loginEntity;
 
@@ -88,7 +89,8 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "ID : " + userId + " FirstName : " + firstName;
+		return "ID : " + userId + " FirstName : " + firstName ;
+		//" Login Entity : " + getLoginEntity();
 	}
 
 }
